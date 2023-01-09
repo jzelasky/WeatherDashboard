@@ -23,13 +23,13 @@
                       <input type="search" id="form1" class="form-control" />
                       <label class="form-label" for="form1"></label>
                     </div>
-                    
-                  </div>
+                </div>
             </aside>
             <div class="col-md-9">
                 <section class="row">
                     <div class="col-md-12 border">
-                        <h3 class="my-3"><strong>"City (M/D/YYYY)"</strong></h3>
+                        <h3 class="my-3"><strong>"City" </strong><strong id="currentDay"></strong></h3>
+                        
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -44,7 +44,7 @@
                 </section>
                 <section class="row">
                     <div class="col-md-2 bg-dark text-light mx-2 pt-2">
-                        <h5>Day + 1</h5>
+                        <h5 id="day1">Day + 1</h5>
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -52,7 +52,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 bg-dark text-light mx-2 pt-2">
-                        <h5>Day + 2</h5>
+                        <h5 id="day2">Day + 2</h5>
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 bg-dark text-light mx-2 pt-2">
-                        <h5>Day + 3</h5>
+                        <h5 id="day3">Day + 3</h5>
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 bg-dark text-light mx-2 pt-2">
-                        <h5>Day + 4</h5>
+                        <h5 id="day4">Day + 4</h5>
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 bg-dark text-light mx-2 pt-2">
-                        <h5>Day + 5</h5>
+                        <h5 id="day5">Day + 5</h5>
                         <ul>
                             <li class="my-2">Temp:</li>
                             <li class="my-2">Wind:</li>
@@ -87,6 +87,12 @@
             </div>
         </div>
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
