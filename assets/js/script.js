@@ -1,8 +1,73 @@
-$(function (){
-    $('#currentDay').text(dayjs().format('M/D/YYYY'));
-    $('#day1').text(dayjs().add(1,'day').format('M/D/YYYY'));
-    $('#day2').text(dayjs().add(2,'day').format('M/D/YYYY'));
-    $('#day3').text(dayjs().add(3,'day').format('M/D/YYYY'));
-    $('#day4').text(dayjs().add(4,'day').format('M/D/YYYY'));
-    $('#day5').text(dayjs().add(5,'day').format('M/D/YYYY'));
-});
+// To Do:
+// -handle form submission
+// -create search history to local storage 
+// -populate weather icon, temp, humidity, and wind speed
+// -populate 5-day forecast
+
+$('#currentDay').text(' ' + dayjs().format('M/D/YYYY'));
+$('#day1').text(dayjs().add(1,'day').format('M/D/YYYY'));
+$('#day2').text(dayjs().add(2,'day').format('M/D/YYYY'));
+$('#day3').text(dayjs().add(3,'day').format('M/D/YYYY'));
+$('#day4').text(dayjs().add(4,'day').format('M/D/YYYY'));
+$('#day5').text(dayjs().add(5,'day').format('M/D/YYYY'));
+
+var APIkey = '0bceea21a9bd0380f36836e68695355a';
+var searchCityEl = document.getElementById('searchCity');
+var searchCityBtn = document.getElementById('searchCityBtn');
+    
+function formSubmitHandler(event) {
+    event.preventDefault();
+    populateInfo();
+}
+
+function populateInfo (){
+    var city = searchCityEl.value.trim();
+    var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey
+    $('#cityName').text(city);
+    localStorage.setItem('savedCity', JSON.stringify(city));
+    fetch(geoURL)
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (data){
+            var lat = data[0].lat;
+            var lon = data[0].lon;
+            var weatherURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIkey + '&units=imperial'
+            console.log(weatherURL)
+            fetch(weatherURL)
+                .then(function (response){
+                    return response.json();
+                })
+                .then(function (data){
+                    $('#day0temp').text(data.list[0].main.temp + ' °F')
+                    $('#day0wind').text(data.list[0].wind.speed + ' mph')
+                    $('#day0humidity').text(data.list[0].main.humidity + '%')
+                    $('#day1temp').text(data.list[6].main.temp + ' °F')
+                    $('#day1wind').text(data.list[6].wind.speed + ' mph')
+                    $('#day1humidity').text(data.list[6].main.humidity + '%')
+                    $('#day2temp').text(data.list[14].main.temp + ' °F')
+                    $('#day2wind').text(data.list[14].wind.speed + ' mph')
+                    $('#day2humidity').text(data.list[14].main.humidity + '%')
+                    $('#day3temp').text(data.list[22].main.temp + ' °F')
+                    $('#day3wind').text(data.list[22].wind.speed + ' mph')
+                    $('#day3humidity').text(data.list[22].main.humidity + '%')
+                    $('#day4temp').text(data.list[30].main.temp + ' °F')
+                    $('#day4wind').text(data.list[30].wind.speed + ' mph')
+                    $('#day4humidity').text(data.list[30].main.humidity + '%')
+                    $('#day5temp').text(data.list[38].main.temp + ' °F')
+                    $('#day5wind').text(data.list[38].wind.speed + ' mph')
+                    $('#day5humidity').text(data.list[38].main.humidity + '%')
+                    
+                  //  console.log(data.list[0].weather[0].id)
+                  //  var iconid0 = data.list[0].weather[0].id;
+                  //  if (iconid0 > 200){
+                  //      var iconurl =  'http://openweathermap.org/img/wn/10d@2x.png'
+                  //  }
+                  //  $('#wicon0').attr('src', iconurl);
+                })
+        })
+}
+
+
+
+searchCityBtn.addEventListener('click', formSubmitHandler);
