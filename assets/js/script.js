@@ -61,12 +61,13 @@ function populateInfo (){
                     $('#day5wind').text(data.list[38].wind.speed + ' mph')
                     $('#day5humidity').text(data.list[38].main.humidity + '%')
                     
-                  //  console.log(data.list[0].weather[0].id)
-                  //  var iconid0 = data.list[0].weather[0].id;
-                  //  if (iconid0 > 200){
-                  //      var iconurl =  'http://openweathermap.org/img/wn/10d@2x.png'
-                  //  }
-                  //  $('#wicon0').attr('src', iconurl);
+                    var iconURL = 'http://openweathermap.org/img/wn/'
+                    $('#icon0').attr('src', iconURL + data.list[0].weather[0].icon + '@2x.png');
+                    $('#icon1').attr('src', iconURL + data.list[6].weather[0].icon + '@2x.png');
+                    $('#icon2').attr('src', iconURL + data.list[14].weather[0].icon + '@2x.png');
+                    $('#icon3').attr('src', iconURL + data.list[22].weather[0].icon + '@2x.png');
+                    $('#icon4').attr('src', iconURL + data.list[30].weather[0].icon + '@2x.png');
+                    $('#icon5').attr('src', iconURL + data.list[38].weather[0].icon + '@2x.png');
                 })
         })
 }
