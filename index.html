@@ -9,24 +9,25 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header class="container-fluid bg-primary text-light mb-5 p-3">
+    <header class="container-fluid bg-custom text-light mb-5 p-3">
         <div class="text-center">
           <h1>Weather Dashboard</h1>
         </div>
     </header>
     <main class="container-fluid">
         <div class="row">
-            <aside class="col-md-3">
+            <aside class="col-md-3 px-5">
                 <h3><strong>Search for a City:</strong></h3>
                 <div class="input-group">
-                    <div class="form-outline">
+                    <div class="form-outline border-bottom">
                       <input type="search" id="searchCity" class="form-control" />
                       <label class="form-label" for="searchCity"></label>
-                      <button type="button" id="searchCityBtn" class="btn btn-primary mx-1 my-2">Search</button>
+                      <button type="button" id="searchCityBtn" class="btn btn-primary col-12 mx-1 mb-2">Search</button>
+                    </div>
+                    <div id="savedContainer">
                     </div>
                 </div>
-                <div id="savedContainer">
-                </div>
+                
             </aside>
             <div class="col-md-9">
                 <section class="row">

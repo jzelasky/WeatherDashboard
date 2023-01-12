@@ -75,7 +75,7 @@ function searchHistory () {
         var newBtn = document.createElement('button')
         newBtn.textContent = savedCities[i]
         savedEl.append(newBtn);
-        newBtn.classList.add('btn', 'btn-secondary', 'm-2');
+        newBtn.classList.add('btn', 'btn-secondary', 'col-8', 'm-2');
         newBtn.addEventListener('click', searchHistoryBtns);
     }
 }
