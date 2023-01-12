@@ -1,8 +1,6 @@
 // To Do:
-// -handle form submission
 // -create search history to local storage 
-// -populate weather icon, temp, humidity, and wind speed
-// -populate 5-day forecast
+// -populate weather icon
 
 $('#currentDay').text(' ' + dayjs().format('M/D/YYYY'));
 $('#day1').text(dayjs().add(1,'day').format('M/D/YYYY'));
@@ -14,6 +12,8 @@ $('#day5').text(dayjs().add(5,'day').format('M/D/YYYY'));
 var APIkey = '0bceea21a9bd0380f36836e68695355a';
 var searchCityEl = document.getElementById('searchCity');
 var searchCityBtn = document.getElementById('searchCityBtn');
+var savedCities = JSON.parse(localStorage.getItem('savedCity')) || [];
+var savedEl = $('#savedContainer');
     
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -24,7 +24,11 @@ function populateInfo (){
     var city = searchCityEl.value.trim();
     var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey
     $('#cityName').text(city);
-    localStorage.setItem('savedCity', JSON.stringify(city));
+    if (city !== ''){
+        savedCities.push(city);
+    }
+    localStorage.setItem('savedCity', JSON.stringify(savedCities));
+    searchHistory();
     fetch(geoURL)
         .then(function (response){
             return response.json();
@@ -33,7 +37,6 @@ function populateInfo (){
             var lat = data[0].lat;
             var lon = data[0].lon;
             var weatherURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIkey + '&units=imperial'
-            console.log(weatherURL)
             fetch(weatherURL)
                 .then(function (response){
                     return response.json();
@@ -68,6 +71,21 @@ function populateInfo (){
         })
 }
 
+function searchHistory () {
+    savedEl.text('')
+    for (let i = 0; i < savedCities.length; i++){
+        var newBtn = document.createElement('button')
+        newBtn.textContent = savedCities[i]
+        savedEl.append(newBtn);
+        newBtn.classList.add('btn', 'btn-secondary', 'm-2');
+        newBtn.addEventListener('click', searchHistoryBtns);
+    }
+}
 
+function searchHistoryBtns() {
+    //function to take city name from buttons and run populate info function
+}
 
 searchCityBtn.addEventListener('click', formSubmitHandler);
+
+searchHistory();
