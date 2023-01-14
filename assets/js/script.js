@@ -65,6 +65,9 @@ function populateInfo (city) {
         return response.json();
     })
     .then(function (data){
+        if (data == 0){
+            return;
+        }
         var lat = data[0].lat;
         var lon = data[0].lon;
         var weatherURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIkey + '&units=imperial'
