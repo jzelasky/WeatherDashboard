@@ -59,7 +59,7 @@ function init () {
 }
 
 function populateInfo (city) {
-    var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey
+    var geoURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey
     console.log(geoURL)
     fetch(geoURL)
     .then(function (response){
@@ -71,7 +71,7 @@ function populateInfo (city) {
         }
         var lat = data[0].lat;
         var lon = data[0].lon;
-        var weatherURL = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIkey + '&units=imperial'
+        var weatherURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIkey + '&units=imperial'
         fetch(weatherURL)
             .then(function (response){
                 return response.json();
