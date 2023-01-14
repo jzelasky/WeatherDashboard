@@ -60,6 +60,7 @@ function init () {
 
 function populateInfo (city) {
     var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey
+    console.log(geoURL)
     fetch(geoURL)
     .then(function (response){
         return response.json();
